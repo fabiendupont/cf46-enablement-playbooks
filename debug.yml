@@ -1,0 +1,10 @@
+---
+- name: Simple debug play
+  hosts: all
+  vars:
+    - message: "Hello world!"
+  tasks:
+    - name: Print a debug message
+      debug:
+        msg: "{{ message }}"
+

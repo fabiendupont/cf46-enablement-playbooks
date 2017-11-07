@@ -1,0 +1,13 @@
+---
+- name: Delete an existing user in ManageIQ
+  hosts: localhost
+  tasks:
+    - name: Delete user account
+      manageiq_user:
+        userid: "{{ user_id }}"
+        state: absent
+        manageiq_connection:
+          url: "{{ manageiq.api_url }}"
+          username: "{{ manageiq.api_username }}"
+          password: "{{ manageiq.api_password }}"
+          verify_ssl: False

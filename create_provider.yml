@@ -1,0 +1,18 @@
+---
+- name: Create an Amazon provider in ManageIQ
+  hosts: localhost
+  tasks:
+    - name: Create the Amazon provider
+      manageiq_provider:
+        type: "Amazon"
+        name: "{{ aws_provider.name }}"
+        provider_region: "{{ aws_provider.region }}"
+        provider:
+          hostname: ""
+          userid: "{{ aws_provider.username }}"
+          password: "{{ aws_provider.password }}"
+        manageiq_connection:
+          url: "{{ manageiq.api_url }}"
+          username: "{{ manageiq.api_username }}"
+          password: "{{ manageiq.api_password }}"
+          verify_ssl: False

@@ -1,0 +1,38 @@
+---
+- name: Create a new user in ManageIQ
+  hosts: localhost
+  vars:
+  tasks:
+    - name: Create the user account
+      manageiq_user:
+        userid: "{{ user_id }}"
+        name: "{{ user_name }}"
+        password: "{{ user_password }}"
+        group: "{{ user_group }}"
+        email: "{{ user_email }}"
+        manageiq_connection:
+          url: "{{ manageiq.api_url }}"
+          username: "{{ manageiq.api_username }}"
+          password: "{{ manageiq.api_password }}"
+          verify_ssl: False
+      register: user
+
+    - name: Set the automate workspace url
+      set_fact:
+        aws_url: "{{ manageiq.api_url }}/api/{{ manageiq.automate_workspace }}"
+
+    - name: Store the playbook status message in automate workspace
+      uri:
+        url: "{{ aws_url }}"
+        method: POST
+        validate_certs: False
+        body:
+          action: edit
+          resource: "{ 'objects': { 'root': { 'aai_playbook_status': '{{ user.msg }}' } } }"
+        body_format: json
+        headers:
+          X-Auth-Token: "{{ manageiq.api_token }}"
+          Content-Type: "application/json"
+        status_code: 200 
+      register: output
+

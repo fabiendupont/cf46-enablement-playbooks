@@ -1,0 +1,14 @@
+---
+- name: Delete an Amazon provider in ManageIQ
+  hosts: localhost
+  tasks:
+    - name: Delete the Amazon provider
+      manageiq_provider:
+        type: "Amazon"
+        name: "{{ aws_provider.name }}"
+        state: absent
+        manageiq_connection:
+          url: "{{ manageiq.api_url }}"
+          username: "{{ manageiq.api_username }}"
+          password: "{{ manageiq.api_password }}"
+          verify_ssl: False
