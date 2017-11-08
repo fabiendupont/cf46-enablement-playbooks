@@ -16,8 +16,7 @@
         email: "{{ user_email }}"
         manageiq_connection:
           url: "{{ manageiq.api_url }}"
-          username: "{{ manageiq.api_username }}"
-          password: "{{ manageiq.api_password }}"
+          token: "{{ manageiq.api_token }}"
           verify_ssl: False
       register: user
 
