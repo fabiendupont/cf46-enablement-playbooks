@@ -3,6 +3,10 @@
   hosts: localhost
   vars:
   tasks:
+    - name: Print variables
+      debug:
+        var: manageiq
+
     - name: Create the user account
       manageiq_user:
         userid: "{{ user_id }}"
