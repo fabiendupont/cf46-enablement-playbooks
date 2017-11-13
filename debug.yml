@@ -8,11 +8,7 @@
       debug:
         msg: "{{ message }}"
 
-    - name: Pause number 01
-      pause:
-        minutes: 2
-
-    - name: Pause number 02
-      pause:
-        minutes: 2
-
+    - name: Print the manageiq variable
+      debug:
+        var: manageiq
+      when: manageiq is defined
