@@ -1,0 +1,38 @@
+---
+- name: Playbook that sleeps
+  hosts: all
+  tasks:
+    - name: Sleep 1
+      command: /bin/sleep 5
+
+    - command: /bin/sleep 5
+
+    - name: Sleep 3
+      command: /bin/sleep 5
+
+    - command: /bin/sleep 5
+
+    - name: Sleep 5
+      command: /bin/sleep 5
+
+    - name: Sleep 6
+      command: /bin/sleep 5
+
+    - name: Sleep 7
+      command: /bin/sleep 5
+
+    - name: Sleep 8
+      command: /bin/sleep 5
+
+    - name: Sleep 9
+      command: /bin/sleep 5
+
+    - name: Sleep 10
+      command: /bin/sleep 5
+
+    - name: Sleep 11
+      command: /bin/sleep 5
+
+    - name: Sleep 12
+      command: /bin/sleep 5
+
